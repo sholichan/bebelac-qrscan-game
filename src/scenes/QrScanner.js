@@ -11,6 +11,7 @@ export class QrScanner extends Scene {
         this.txtFood;
         this.txtSumber;
         this.textScore;
+        this.nextBtn;
         this.scannedData = ''; // Menyimpan karakter yang diterima
         this.scanTimeout = null; // Menyimpan reference timeout
     }
@@ -22,22 +23,22 @@ export class QrScanner extends Scene {
         this.cameras.main.setBackgroundColor(0xffac00);
 
         this.textScore = this.add.text(
-            this.cameras.main.width -100,
+            this.cameras.main.width - 100,
             100,
             `${this.countScan}/3`,
             {
-                font: '55px Arial',         
-                fill: '#2a0377',            
-                fontStyle: 'bold',          
-                stroke: '#ffffff',          
-                strokeThickness: 4,         
+                font: '55px Arial',
+                fill: '#2a0377',
+                fontStyle: 'bold',
+                stroke: '#ffffff',
+                strokeThickness: 4,
                 shadow: {
-                    offsetX: 2,             
-                    offsetY: 2,             
-                    color: '#ff0000',       
-                    blur: 2,                
-                    stroke: true,           
-                    fill: true              
+                    offsetX: 2,
+                    offsetY: 2,
+                    color: '#ff0000',
+                    blur: 2,
+                    stroke: true,
+                    fill: true
                 }
             }
         ).setShadow(1, 1).setDepth(1).setOrigin(0.5).setVisible(false);
@@ -81,12 +82,23 @@ export class QrScanner extends Scene {
             this.cameras.main.height / 2, 'scan-frame').setScale(1.2)
         this.bg = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'bg')
             .setScale(0.27).setOrigin(0.5, 0.5).setVisible(false).setInteractive();
-        this.bg.on('pointerdown', () => {
+
+
+        this.txtFood = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.9, 'txt-apel')
+            .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false);
+        this.txtSumber = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.1, 'txt-sumber')
+            .setScale(0.2).setOrigin(0.5, 0.5).setVisible(false);
+        this.food = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.5, 'apel')
+            .setScale(1).setOrigin(0.5, 0.5).setVisible(false);
+        this.nextBtn = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.2, 'next')
+            .setScale(0.2).setOrigin(0.5, 0.5).setInteractive().setVisible(false);
+        this.nextBtn.on('pointerdown', () => {
             this.bg.setVisible(false);
             this.food.setVisible(false);
             this.txtFood.setVisible(false);
             this.txtSumber.setVisible(false);
             this.textScore.setVisible(false)
+            this.nextBtn.setVisible(false)
             this.isScanning = true;
             if (this.countScan === 3) {
                 localStorage.setItem('score', this.score.toString());
@@ -98,13 +110,6 @@ export class QrScanner extends Scene {
             }
             console.log(`countScan = ` + this.countScan);
         });
-
-        this.txtFood = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3, 'txt-apel')
-            .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false);
-        this.txtSumber = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.1, 'txt-sumber')
-            .setScale(0.2).setOrigin(0.5, 0.5).setVisible(false);
-        this.food = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.5, 'apel')
-            .setScale(1).setOrigin(0.5, 0.5).setVisible(false);
     }
 
     showFoodInfo(split) {
@@ -114,6 +119,7 @@ export class QrScanner extends Scene {
         this.txtFood.setTexture(`txt-${split}`).setVisible(true);
         this.txtSumber.setVisible(true);
         this.textScore.setText(`${this.countScan}/3`).setVisible(true)
+        this.nextBtn.setVisible(true)
         this.tweens.add({
             targets: this.food,
             scaleX: 0.95,

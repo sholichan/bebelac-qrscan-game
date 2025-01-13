@@ -40,6 +40,9 @@ export class ResultGame extends Scene {
         const txtResult = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3, 'txt-smile')
             .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false)
 
+        const finishBtn = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.2, 'selesai')
+            .setScale(0.2).setOrigin(0.5, 0.5).setInteractive();
+
         this.tweens.add({
             targets: this.bintang,
             x: this.cameras.main.width / 1.2,
@@ -78,7 +81,7 @@ export class ResultGame extends Scene {
             }
         });
 
-        this.input.once('pointerdown', () => {
+        finishBtn.on('pointerdown', () => {
             txtResult.setVisible(false)
             localStorage.clear()
             this.cryFx.stop()

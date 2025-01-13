@@ -32,6 +32,8 @@ export class Preloader extends Scene {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
         this.load.image('mulai', 'FOR-TV/mulai.png');
+        this.load.image('next', 'FOR-TV/next.png');
+        this.load.image('selesai', 'FOR-TV/selesai.png');
         this.load.image('analysis', 'FOR-TV/analysis.png');
         this.load.image('logo', 'logo.png');
         this.load.image('menu', 'FOR-TV/KV-Potrait-Totem.png');
