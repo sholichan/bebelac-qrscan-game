@@ -9,6 +9,8 @@ export class QrScanner extends Scene {
         this.bg;
         this.food;
         this.txtFood;
+        this.txtSumber;
+        this.textScore;
         this.scannedData = ''; // Menyimpan karakter yang diterima
         this.scanTimeout = null; // Menyimpan reference timeout
     }
@@ -19,12 +21,26 @@ export class QrScanner extends Scene {
     create() {
         this.cameras.main.setBackgroundColor(0xffac00);
 
-        // const text = this.add.text(
-        //     this.cameras.main.width / 2,
-        //     40,
-        //     'Waiting for QR Code Scan...',
-        //     { font: '32px Courier', fill: '#00ff00' }
-        // ).setShadow(1, 1).setDepth(1).setOrigin(0.5);
+        this.textScore = this.add.text(
+            this.cameras.main.width -100,
+            100,
+            `${this.countScan}/3`,
+            {
+                font: '55px Arial',         
+                fill: '#2a0377',            
+                fontStyle: 'bold',          
+                stroke: '#ffffff',          
+                strokeThickness: 4,         
+                shadow: {
+                    offsetX: 2,             
+                    offsetY: 2,             
+                    color: '#ff0000',       
+                    blur: 2,                
+                    stroke: true,           
+                    fill: true              
+                }
+            }
+        ).setShadow(1, 1).setDepth(1).setOrigin(0.5).setVisible(false);
 
         // Menangani input dari barcode scanner yang bertindak seperti keyboard
         this.input.keyboard.on('keydown', (event) => {
@@ -48,6 +64,20 @@ export class QrScanner extends Scene {
 
         // Elemen visual lainnya
         this.add.image(this.cameras.main.width / 2,
+            this.cameras.main.height / 1.67, 'bebelac').setScale(1.6)
+        const neon = this.add.image(this.cameras.main.width / 2,
+            this.cameras.main.height / 1.67 + 220, 'neon').setScale(0.12)
+        this.tweens.add({
+            targets: neon,
+            x: this.cameras.main.width / 2,
+            y: this.cameras.main.height / 1.67 - 220,
+            duration: 2000,
+            ease: 'Power',
+            // delay: 500,
+            yoyo: true,
+            repeat: -1,
+        });
+        this.add.image(this.cameras.main.width / 2,
             this.cameras.main.height / 2, 'scan-frame').setScale(1.2)
         this.bg = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'bg')
             .setScale(0.27).setOrigin(0.5, 0.5).setVisible(false).setInteractive();
@@ -55,6 +85,8 @@ export class QrScanner extends Scene {
             this.bg.setVisible(false);
             this.food.setVisible(false);
             this.txtFood.setVisible(false);
+            this.txtSumber.setVisible(false);
+            this.textScore.setVisible(false)
             this.isScanning = true;
             if (this.countScan === 3) {
                 localStorage.setItem('score', this.score.toString());
@@ -69,6 +101,8 @@ export class QrScanner extends Scene {
 
         this.txtFood = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3, 'txt-apel')
             .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false);
+        this.txtSumber = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.1, 'txt-sumber')
+            .setScale(0.2).setOrigin(0.5, 0.5).setVisible(false);
         this.food = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.5, 'apel')
             .setScale(1).setOrigin(0.5, 0.5).setVisible(false);
     }
@@ -78,6 +112,8 @@ export class QrScanner extends Scene {
         this.bg.setVisible(true);
         this.food.setTexture(split).setVisible(true);
         this.txtFood.setTexture(`txt-${split}`).setVisible(true);
+        this.txtSumber.setVisible(true);
+        this.textScore.setText(`${this.countScan}/3`).setVisible(true)
         this.tweens.add({
             targets: this.food,
             scaleX: 0.95,

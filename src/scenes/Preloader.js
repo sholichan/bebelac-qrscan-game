@@ -41,6 +41,8 @@ export class Preloader extends Scene {
         this.load.image('footer', 'FOR-TV/footer.png');
         this.load.image('bar', 'FOR-TV/bar.png');
         this.load.image('bintang', 'FOR-TV/bintang.png');
+        this.load.image('neon', 'FOR-TV/neon.png');
+        this.load.image('bebelac', 'FOR-TV/bebelac.png');
 
         this.load.image('normal', 'FOR-TV/normal.png');
         this.load.image('tantrum', 'FOR-TV/tantrum.png');
@@ -68,6 +70,8 @@ export class Preloader extends Scene {
         this.load.image('txt-susu-fiber', 'FOR-TV/txt-susu-fiber.png');
         this.load.image('txt-susu-fosgos', 'FOR-TV/txt-susu-fosgos.png');
         this.load.image('txt-tomat', 'FOR-TV/txt-tomat.png');
+
+        this.load.image('txt-sumber', 'FOR-TV/txt-sumber.png');
 
         this.load.audio('music', 'audio/music.mp3')
         this.load.audio('button', 'audio/button.mp3')

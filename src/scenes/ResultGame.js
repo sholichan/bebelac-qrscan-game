@@ -48,7 +48,7 @@ export class ResultGame extends Scene {
             ease: 'Power2',
             delay: 500,
             onComplete: () => {
-                if (this.percentScore < 70) {
+                if (this.percentScore < 100) {
                     this.kids.setTexture('tantrum')
                     txtResult.setTexture('txt-tantrum').setVisible(true)
                     this.cryFx.play()
