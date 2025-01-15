@@ -87,6 +87,7 @@ export class Preloader extends Scene {
         this.load.image('anl-kebutuhan', 'FOR-TV/anl-kebutuhan.png');
 
         this.load.image('txt-sumber', 'FOR-TV/txt-sumber.png');
+        this.load.image('txt-referensi', 'FOR-TV/txt-referensi.png');
 
         this.load.audio('music', 'audio/music.mp3')
         this.load.audio('button', 'audio/button.mp3')
@@ -100,6 +101,7 @@ export class Preloader extends Scene {
         this.time.delayedCall(1000, () => {
             this.input.setDefaultCursor('url(assets/FOR-TV/cursor2.png) 16 16, pointer');
             this.scene.start('MainMenu')
+            // this.scene.start('ResultGame')
         });
     }
 }

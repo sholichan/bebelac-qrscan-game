@@ -40,6 +40,9 @@ export class ResultGame extends Scene {
         const txtResult = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3, 'txt-smile')
             .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false)
 
+        const txtReferensi = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3+200, 'txt-referensi')
+            .setScale(0.4).setOrigin(0.5, 0.5).setVisible(false)
+
         const finishBtn = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.2, 'selesai')
             .setScale(0.2).setOrigin(0.5, 0.5).setInteractive();
 
