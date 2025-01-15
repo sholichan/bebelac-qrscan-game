@@ -73,6 +73,19 @@ export class Preloader extends Scene {
         this.load.image('txt-susu-fosgos', 'FOR-TV/txt-susu-fosgos.png');
         this.load.image('txt-tomat', 'FOR-TV/txt-tomat.png');
 
+        this.load.image('anl-apel', 'FOR-TV/anl-apel.png');
+        this.load.image('anl-bayam', 'FOR-TV/anl-bayam.png');
+        this.load.image('anl-brokoli', 'FOR-TV/anl-brokoli.png');
+        this.load.image('anl-jagung', 'FOR-TV/anl-jagung.png');
+        this.load.image('anl-pepaya', 'FOR-TV/anl-pepaya.png');
+        this.load.image('anl-pisang', 'FOR-TV/anl-pisang.png');
+        this.load.image('anl-susu-fiber', 'FOR-TV/anl-susu-fiber.png');
+        this.load.image('anl-susu-fosgos', 'FOR-TV/anl-susu-fosgos.png');
+        this.load.image('anl-tomat', 'FOR-TV/anl-tomat.png');
+        this.load.image('anl-hasil', 'FOR-TV/anl-hasil.png');
+        this.load.image('anl-total', 'FOR-TV/anl-total.png');
+        this.load.image('anl-kebutuhan', 'FOR-TV/anl-kebutuhan.png');
+
         this.load.image('txt-sumber', 'FOR-TV/txt-sumber.png');
 
         this.load.audio('music', 'audio/music.mp3')

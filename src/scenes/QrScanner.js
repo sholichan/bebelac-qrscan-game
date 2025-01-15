@@ -27,11 +27,11 @@ export class QrScanner extends Scene {
             100,
             `${this.countScan}/3`,
             {
-                font: '55px Arial',
+                font: '45px Georgia',
                 fill: '#2a0377',
                 fontStyle: 'bold',
                 stroke: '#ffffff',
-                strokeThickness: 4,
+                strokeThickness: 14,
                 shadow: {
                     offsetX: 2,
                     offsetY: 2,
@@ -101,10 +101,11 @@ export class QrScanner extends Scene {
             this.nextBtn.setVisible(false)
             this.isScanning = true;
             if (this.countScan === 3) {
-                localStorage.setItem('score', this.score.toString());
+                
+                localStorage.setItem('score', this.score.toFixed(1).toString());
                 this.countScan = 1;
                 this.score = 0;
-                this.scene.start('ResultGame');
+                this.scene.start('ScanAnalysis');
             } else {
                 this.countScan += 1;
             }
@@ -113,6 +114,8 @@ export class QrScanner extends Scene {
     }
 
     showFoodInfo(split) {
+        localStorage.setItem('anl' + this.countScan, `anl-${split}`);
+
         this.isScanning = false;
         this.bg.setVisible(true);
         this.food.setTexture(split).setVisible(true);
@@ -143,7 +146,7 @@ export class QrScanner extends Scene {
                     this.showFoodInfo(split)
                     break;
                 case "bayam":
-                    this.score = this.score + 0.17;
+                    this.score = this.score + 0.7;
                     this.showFoodInfo(split)
                     break;
                 case "brokoli":
