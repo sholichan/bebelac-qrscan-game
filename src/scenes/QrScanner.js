@@ -121,7 +121,7 @@ export class QrScanner extends Scene {
         this.food.setTexture(split).setVisible(true);
         this.txtFood.setTexture(`txt-${split}`).setVisible(true);
         this.txtSumber.setVisible(true);
-        this.textScore.setText(`${this.countScan}/3`).setVisible(true)
+        this.textScore.setText(`${this.countScan}/5`).setVisible(true)
         this.nextBtn.setVisible(true)
         this.tweens.add({
             targets: this.food,

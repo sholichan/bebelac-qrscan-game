@@ -40,7 +40,7 @@ export class ResultGame extends Scene {
         const txtResult = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3, 'txt-smile')
             .setScale(0.25).setOrigin(0.5, 0.5).setVisible(false)
 
-        const txtReferensi = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3+200, 'txt-referensi')
+        const txtReferensi = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 3 + 200, 'txt-referensi')
             .setScale(0.4).setOrigin(0.5, 0.5).setVisible(false)
 
         const finishBtn = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.2, 'selesai')
@@ -49,12 +49,13 @@ export class ResultGame extends Scene {
         this.tweens.add({
             targets: this.bintang,
             x: this.cameras.main.width / 1.2,
-            y: this.cameras.main.height / 1.7 + 200 - this.percentBar,
+            y: this.percentScore >= 100 ? this.cameras.main.height / 1.7 - 200 : this.cameras.main.height / 1.7 + 200 - this.percentBar,
             duration: 2000,
             ease: 'Power2',
             delay: 500,
             onComplete: () => {
                 if (this.percentScore < 100) {
+                    txtReferensi.setVisible(true)
                     this.kids.setTexture('tantrum')
                     txtResult.setTexture('txt-tantrum').setVisible(true)
                     this.cryFx.play()
@@ -68,6 +69,7 @@ export class ResultGame extends Scene {
                         ease: 'Sine.easeInOut',
                     });
                 } else {
+                    txtReferensi.setVisible(true)
                     this.kids.setTexture('smile')
                     txtResult.setTexture('txt-smile').setVisible(true)
                     this.laughFx.play()
@@ -85,6 +87,7 @@ export class ResultGame extends Scene {
         });
 
         finishBtn.on('pointerdown', () => {
+            txtReferensi.setVisible(false)
             txtResult.setVisible(false)
             localStorage.clear()
             this.cryFx.stop()
