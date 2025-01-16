@@ -30,12 +30,12 @@ export class ScanAnalysis extends Scene {
         const anl3 = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.9 + 300, 'anl-apel')
             .setScale(0.3).setOrigin(0.5, 0.5).setVisible(false)
         const anlToatal = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2.9 + 400, 'anl-total')
-            .setScale(0.5).setOrigin(0.5, 0.5).setVisible(false)
+            .setScale(0.4).setOrigin(0.5, 0.5).setVisible(true)
         this.score = this.add.text(
-            290, this.cameras.main.height / 2.9 + 390,
+            220, this.cameras.main.height / 2.9 + 395,
             `${this.score}`,
             {
-                font: '45px Georgia',
+                font: '35px Georgia',
                 fill: '#2a0377',
                 fontStyle: 'bold',
                 stroke: '#ffffff',

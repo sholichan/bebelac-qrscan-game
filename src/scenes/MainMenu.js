@@ -26,6 +26,7 @@ export class MainMenu extends Scene {
             ease: 'Sine.easeInOut', 
         });
         button.on('pointerdown', () => {
+            // this.scene.start('ScanAnalysis');
             this.scene.start('Analysis');
         });
     }
