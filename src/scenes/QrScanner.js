@@ -25,7 +25,7 @@ export class QrScanner extends Scene {
         this.textScore = this.add.text(
             this.cameras.main.width - 100,
             100,
-            `${this.countScan}/3`,
+            `${this.countScan}/5`,
             {
                 font: '45px Georgia',
                 fill: '#2a0377',
@@ -100,7 +100,7 @@ export class QrScanner extends Scene {
             this.textScore.setVisible(false)
             this.nextBtn.setVisible(false)
             this.isScanning = true;
-            if (this.countScan === 3) {
+            if (this.countScan === 5) {
                 
                 localStorage.setItem('score', this.score.toFixed(1).toString());
                 this.countScan = 1;
