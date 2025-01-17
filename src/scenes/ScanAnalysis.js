@@ -39,7 +39,7 @@ export class ScanAnalysis extends Scene {
         //     .setScale(0.35).setOrigin(0.5, 0.5).setVisible(true)
         this.score = this.add.text(
             this.cameras.main.width / 2, this.cameras.main.height / 2.9 + 450,
-            `Total ${this.score} gram ${this.score<19?`<`:`>`} kebutuhan serat prebiotik anak usia 1-3 tahun`,
+            `Total ${this.score} gram ${this.score <= 19 ? `<` : this.score == 19 ? `=` : `>`} kebutuhan serat prebiotik anak usia 1-3 tahun`,
             {
                 font: '32px Georgia',
                 fill: '#2a0377',
