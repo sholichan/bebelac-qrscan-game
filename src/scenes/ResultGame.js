@@ -15,7 +15,7 @@ export class ResultGame extends Scene {
 
     percentCalc() {
         this.score = localStorage.getItem('score')
-        this.percentScore = parseInt(this.score) / 19 * 100
+        this.percentScore = parseInt(this.score) / 6 * 100
         this.percentBar = this.percentScore / 100 * 400
         console.log(this.score);
         console.log(this.percentScore);
