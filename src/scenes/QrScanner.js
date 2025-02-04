@@ -186,11 +186,11 @@ export class QrScanner extends Scene {
                     this.showFoodInfo(split)
                     break;
                 case "susu-fiber":
-                    this.score = this.score + 2;
+                    this.score = this.score + 6;
                     this.showFoodInfo(split)
                     break;
                 case "susu-fosgos":
-                    this.score = this.score + 1;
+                    this.score = this.score + 3;
                     this.showFoodInfo(split)
                     break;
                 case "tomat":
