@@ -43,27 +43,52 @@ export class QrScanner extends Scene {
             }
         ).setShadow(1, 1).setDepth(1).setOrigin(0.5).setVisible(false);
 
-        // Menangani input dari barcode scanner yang bertindak seperti keyboard
-        this.input.keyboard.on('keydown', (event) => {
-            // Tambahkan karakter yang diterima ke scannedData
-            this.scannedData += event.key;
+        // this.input.keyboard.on('keydown', (event) => {
+        //     if (!this.isScanning) return;
 
-            // Hapus timeout lama jika ada
-            if (this.scanTimeout) {
-                clearTimeout(this.scanTimeout);
-            }
+        //     this.scannedData += event.key;
 
-            // Set timeout untuk memproses data setelah beberapa waktu (misal 500ms)
-            this.scanTimeout = setTimeout(() => {
-                if (this.scannedData) {
-                    // Lakukan pemrosesan pemindaian QR Code
-                    this.handleScanResult(this.scannedData);
-                    this.scannedData = ''; // Reset scannedData setelah diproses
+        //     if (this.scanTimeout) {
+        //         clearTimeout(this.scanTimeout);
+        //     }
+
+        //     this.scanTimeout = setTimeout(() => {
+        //         if (this.scannedData.trim()) {
+        //             this.handleScanResult(this.scannedData.trim());
+        //             this.scannedData = '';
+        //         }
+        //     }, 100);
+        // });
+
+        // Menambahkan input elemen DOM
+        const inputElement = this.add.dom(this.cameras.main.width / 2, this.cameras.main.height / 2)
+            .createFromCache('inputScan')
+            .setVisible(true);
+
+        // Pastikan inputElement adalah DOM element yang benar
+        const input = inputElement.getChildByName('scanField'); // Pastikan 'inputElement' adalah nama yang diberikan pada elemen input
+
+        if (input) {
+            input.style.opacity = 0;  // Menyembunyikan input element
+            input.style.pointerEvents = 'none';  // Tidak bisa diklik
+
+            // Fokuskan ke input untuk menerima data scanner
+            input.focus();
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    const scannedValue = input.value.trim();
+                    if (scannedValue) {
+                        console.log(`Scanned Value: ${scannedValue}`);
+                        this.handleScanResult(scannedValue);
+                        input.value = ''; // Reset setelah memproses
+                    }
                 }
-            }, 500); // Waktu tunggu 500ms
-        });
+            });
+        } else {
+            console.log("Input element tidak ditemukan.");
+        }
 
-        // Elemen visual lainnya
         this.add.image(this.cameras.main.width / 2,
             this.cameras.main.height / 1.67, 'bebelac').setScale(1.6)
         const neon = this.add.image(this.cameras.main.width / 2,
@@ -74,7 +99,6 @@ export class QrScanner extends Scene {
             y: this.cameras.main.height / 1.67 - 220,
             duration: 2000,
             ease: 'Power',
-            // delay: 500,
             yoyo: true,
             repeat: -1,
         });
@@ -92,6 +116,7 @@ export class QrScanner extends Scene {
             .setScale(1).setOrigin(0.5, 0.5).setVisible(false);
         this.nextBtn = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 1.2, 'next')
             .setScale(0.2).setOrigin(0.5, 0.5).setInteractive().setVisible(false);
+
         this.nextBtn.on('pointerdown', () => {
             this.bg.setVisible(false);
             this.food.setVisible(false);
@@ -101,7 +126,7 @@ export class QrScanner extends Scene {
             this.nextBtn.setVisible(false)
             this.isScanning = true;
             if (this.countScan === 5) {
-                
+
                 localStorage.setItem('score', this.score.toFixed(1).toString());
                 this.countScan = 1;
                 this.score = 0;
@@ -135,9 +160,8 @@ export class QrScanner extends Scene {
     }
 
     handleScanResult(data) {
-        // Tampilkan informasi berdasarkan hasil pemindaian
         console.log(`QR Code Detected: ${data.split('Enter')[0]}`);
-        const split = data.split('Enter')[0]
+        const split = data.split('Enter')[0].toLowerCase()
         console.log(split);
         if (this.isScanning) {
             switch (split) {
@@ -150,11 +174,11 @@ export class QrScanner extends Scene {
                     this.showFoodInfo(split)
                     break;
                 case "brokoli":
-                    this.score = this.score + 5.2;
+                    this.score = this.score + 2.6;
                     this.showFoodInfo(split)
                     break;
                 case "jagung":
-                    this.score = this.score + 4.6;
+                    this.score = this.score + 2.3;
                     this.showFoodInfo(split)
                     break;
                 case "pisang":
@@ -166,11 +190,11 @@ export class QrScanner extends Scene {
                     this.showFoodInfo(split)
                     break;
                 case "susu-fosgos":
-                    this.score = this.score + 3;
+                    this.score = this.score + 2;
                     this.showFoodInfo(split)
                     break;
                 case "tomat":
-                    this.score = this.score + 1.5;
+                    this.score = this.score + 1;
                     this.showFoodInfo(split)
                     break;
                 case "pepaya":

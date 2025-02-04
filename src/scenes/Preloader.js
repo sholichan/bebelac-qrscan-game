@@ -95,6 +95,7 @@ export class Preloader extends Scene {
         this.load.audio('cry', 'audio/cry.mp3')
 
         this.load.html('nameform', 'html/nameform.html')
+        this.load.html('inputScan', 'html/inputScan.html')
     }
 
     create() {
