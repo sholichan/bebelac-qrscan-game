@@ -25,7 +25,7 @@ export class QrScanner extends Scene {
         this.textScore = this.add.text(
             this.cameras.main.width - 100,
             100,
-            `${this.countScan}/5`,
+            `${this.countScan}/3`,
             {
                 font: '45px Georgia',
                 fill: '#2a0377',
@@ -125,7 +125,7 @@ export class QrScanner extends Scene {
             this.textScore.setVisible(false)
             this.nextBtn.setVisible(false)
             this.isScanning = true;
-            if (this.countScan === 5) {
+            if (this.countScan === 3) {
 
                 localStorage.setItem('score', this.score.toFixed(1).toString());
                 this.countScan = 1;
@@ -146,7 +146,7 @@ export class QrScanner extends Scene {
         this.food.setTexture(split).setVisible(true);
         this.txtFood.setTexture(`txt-${split}`).setVisible(true);
         this.txtSumber.setVisible(true);
-        this.textScore.setText(`${this.countScan}/5`).setVisible(true)
+        this.textScore.setText(`${this.countScan}/3`).setVisible(true)
         this.nextBtn.setVisible(true)
         this.tweens.add({
             targets: this.food,
@@ -186,11 +186,11 @@ export class QrScanner extends Scene {
                     this.showFoodInfo(split)
                     break;
                 case "susu-fiber":
-                    this.score = this.score + 6;
+                    this.score = this.score + 2;
                     this.showFoodInfo(split)
                     break;
                 case "susu-fosgos":
-                    this.score = this.score + 3;
+                    this.score = this.score + 1;
                     this.showFoodInfo(split)
                     break;
                 case "tomat":
