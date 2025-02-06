@@ -45,6 +45,8 @@ export class Preloader extends Scene {
         this.load.image('bintang', 'FOR-TV/bintang.png');
         this.load.image('neon', 'FOR-TV/neon.png');
         this.load.image('bebelac', 'FOR-TV/bebelac.png');
+        this.load.image('fosgos', 'FOR-TV/LOGO-FOSGOS.png');
+        this.load.image('expert', 'FOR-TV/tahukah-expert.png');
 
         this.load.image('normal', 'FOR-TV/normal.png');
         this.load.image('tantrum', 'FOR-TV/tantrum.png');
@@ -102,7 +104,7 @@ export class Preloader extends Scene {
         this.time.delayedCall(1000, () => {
             this.input.setDefaultCursor('url(assets/FOR-TV/cursor2.png) 16 16, pointer');
             this.scene.start('MainMenu')
-            // this.scene.start('ResultGame')
+            // this.scene.start('TahukahExpert')
         });
     }
 }

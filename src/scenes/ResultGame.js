@@ -92,7 +92,7 @@ export class ResultGame extends Scene {
             localStorage.clear()
             this.cryFx.stop()
             this.laughFx.stop()
-            this.scene.start('MainMenu');
+            this.scene.start('TahukahExpert');
 
         });
     }
